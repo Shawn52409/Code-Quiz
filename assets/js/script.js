@@ -19,7 +19,7 @@ var timer;
 var timerCount;
 var currentQuestion = 0;
 var userCorrectAnswers = 0;
-
+var storedHs = [];
 
 var quizQuestions = [
  {   
@@ -218,17 +218,18 @@ function startTimer() {
       }
     }, 1000);
   }
-function viewHighScores(){
+
+  // View highscores from local storage when you click highscore
+  function viewHighScores(){
     $("#highscorecontainer").show();
-    var storedHs = JSON.parse(localStorage.getItem("highscorelist"));
+    storedHs = JSON.parse(localStorage.getItem("highscoreslist"));
     console.log(storedHs);
-    var halfOfStoredHs = ((storedHs.length)/2);
-    for (var i = 0; i < halfOfStoredHs; i++){
-    var li = document.createElement("li");
-    li.textContent = storedHs[i] + "" + storedHs[i+1];
+    console.log(storedHs.length)
+    for (var i = 0; i < storedHs.length; i=i+2){
+    $("#highscorelist").append('<li>' + storedHs[i] + " " + storedHs[i+1]+ '</li>');
 }}
 
 
 // Event listener to start button to call startGame function on click
 startButton.addEventListener("click", startQuiz);
-highscore.addEventListener("Click", viewHighScores);
+$("#highscore").on("click", viewHighScores);
