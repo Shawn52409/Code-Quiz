@@ -1,4 +1,4 @@
-# Password Generator
+# Code-Quiz
 Created by Shawn Miller
 
 # Technologies Used
