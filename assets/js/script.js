@@ -1,6 +1,6 @@
 var startButton = document.querySelector(".start-button");
 var timerElement = document.querySelector("#time-left");
-var highscore = document.querySelector(".highscore");
+var highscore = document.querySelector("#highscore");
 var question = document.querySelector("#question");
 var questionText = document.querySelector("#questiontext");
 var firstAnswer = document.querySelector("#first-answer");
@@ -8,12 +8,9 @@ var secondAnswer = document.querySelector("#second-answer");
 var thirdAnswer = document.querySelector("#third-answer");
 var fourthAnswer = document.querySelector("#fourth-answer");
 var questionFeedback = document.querySelector("#question-feedback");
-var initials = document.querySelector("#initials");
-var submitButton = document.querySelector("#submit");
 
-var highscores = JSON.parse(localStorage.getItem("highScores")) || [];
-
-
+var highscoreslist = [];
+var initials
 var correctResponses = ["Correct!!! 😁", "Great Job!!! 🤩", "You Rock!!! 😎", "AWESOME!!! 👍"];
 var incorrectResponses = ["WRONG!!! What Were You Thinking?!?!? 🙄", "No Way Jose!!! 😵", "ABSOLUTELY NOT!!! 😡", "No! Quit Guessing!!! 🤦‍♂️"];
 var answeredQuestion = false;
@@ -127,11 +124,8 @@ var quizQuestions = [
 }
 ];
 
-function saveScore(name, score){
 
-}
-
-// The startQuiz function is called when the start button is clicked
+// Start Quiz function is called when the start button is clicked
 function startQuiz() {
     $("ol").show();
     timerCount = 60;
@@ -171,26 +165,26 @@ $(".answeritem").on("click",function (evt){
         console.log(quizQuestions[currentQuestion]);
         showQuestions(quizQuestions[currentQuestion]);
     } else {
-        gameover();
+        timerCount = 0;
     }
-
-
 })
-// set counter to zero and display results.
+
+// prompt for user initials and set counter to zero and display results.
 function gameover(){
     $("ol").hide();
-    timerCount = 0;
-    questionText.textContent = "Your correctly answered " + userCorrectAnswers + " questions our of 10 questions."
+    initials= prompt("Please enter your initials");
+    initials = initials.toUpperCase();
+    questionText.textContent = initials + " correctly answered " + userCorrectAnswers + " questions our of 10 questions."
     questionFeedback.textContent = "You scored a " + (userCorrectAnswers/10 * 100) + "%."
-    $("#enter-score").show();
-    //$("#submit").on("click", function (evt){
-    submitButton.addEventListener("click", console.log(initials));
     
+    // save current initials and score
+    highscoreslist.push(initials,userCorrectAnswers);
     
+    // save current initials and score to local storage
+    localStorage.setItem("highscoreslist", JSON.stringify(highscoreslist)); 
     
-    
+    // re-enable the start quiz button
     startButton.disabled = false;
-
 }
 
 // show questions
@@ -224,13 +218,17 @@ function startTimer() {
       }
     }, 1000);
   }
-
-//display highscores
-// $("#highscore").on("click", function(){
-//     $("#enter-score").show();
-// }
-
+function viewHighScores(){
+    $("#highscorecontainer").show();
+    var storedHs = JSON.parse(localStorage.getItem("highscorelist"));
+    console.log(storedHs);
+    var halfOfStoredHs = ((storedHs.length)/2);
+    for (var i = 0; i < halfOfStoredHs; i++){
+    var li = document.createElement("li");
+    li.textContent = storedHs[i] + "" + storedHs[i+1];
+}}
 
 
 // Event listener to start button to call startGame function on click
 startButton.addEventListener("click", startQuiz);
+highscore.addEventListener("Click", viewHighScores);

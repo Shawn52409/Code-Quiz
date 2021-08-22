@@ -17,8 +17,6 @@ header{
     padding: 10px;
     background-color: lightskyblue;
     text-align: center;
-    /*flex-direction: column;*/
-    /*justify-content: center;*/
 }
 
 .start-button{
@@ -59,8 +57,6 @@ nav{
 #timer{
     align-items: flex-end;
     padding: 1em;
-    /*border-style: double;*/
-    border-color: green;
     width: 20em;
     margin-left: 60%;
     font-size: 2em;
@@ -92,6 +88,15 @@ section{
     text-align: center;
 }
 
-#highscorelist{
-    justify-items: left;
+@media (max-width: 690px) {
+*{
+    display:flex, 1;
+    display:row;
+}
+.start-button{
+    width: 40%;
+}
+#timer{
+    margin-left: 10%;
+}
 }
