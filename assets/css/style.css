@@ -1,0 +1,97 @@
+*{
+    background-color:rgb(226, 225, 221);
+}
+
+.title {
+    display: flex;
+    color: blue;
+    background-color: lightskyblue;
+    justify-content: center;
+    font-weight: bolder;
+    font-size: 4em;
+    padding: 30px;
+    
+}
+
+header{
+    padding: 10px;
+    background-color: lightskyblue;
+    text-align: center;
+    /*flex-direction: column;*/
+    /*justify-content: center;*/
+}
+
+.start-button{
+    width: 10%;
+    align-items: center;
+    color: red;
+    font-weight: bolder;
+    font-size: 2em;
+    
+}
+.start-button:hover{
+    color: blue;
+    background-color: yellow;
+    cursor: pointer;
+}
+
+nav{
+   display: flex;
+   flex-direction: row;
+   padding: 10px;
+   
+}
+
+#highscore{
+    align-items: flex-start;
+    padding: 1em;
+    /*border-style: double;*/
+    border-color: blue;
+    width: 15em;
+    font-size: 2em;
+}
+#highscore:hover{
+    color: blue;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+#timer{
+    align-items: flex-end;
+    padding: 1em;
+    /*border-style: double;*/
+    border-color: green;
+    width: 20em;
+    margin-left: 60%;
+    font-size: 2em;
+}
+
+section{
+    padding: 1em;
+    font-size:large;
+}
+
+#question{
+    display: grid;
+    justify-content: center;
+}
+
+.answeritem:hover{
+    color: blue;
+    background-color: yellow;
+    cursor: pointer;
+}
+
+#question-feedback{
+    display: grid;
+    justify-content: center;
+    font-size: 2em;
+}
+
+#enter-score{
+    text-align: center;
+}
+
+#highscorelist{
+    justify-items: left;
+}
