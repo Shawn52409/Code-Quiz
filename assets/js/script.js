@@ -19,7 +19,7 @@ var timer;
 var timerCount;
 var currentQuestion = 0;
 var userCorrectAnswers = 0;
-var storedHs = [];
+var highscoresOff = true;
 
 var quizQuestions = [
  {   
@@ -221,15 +221,29 @@ function startTimer() {
 
   // View highscores from local storage when you click highscore
   function viewHighScores(){
+    
+    if (highscoresOff){  
+    storedHs = [];
+    storedHs.length = 0;
+    highscoresOff = false;
     $("#highscorecontainer").show();
     storedHs = JSON.parse(localStorage.getItem("highscoreslist"));
     console.log(storedHs);
     console.log(storedHs.length)
+    // display the highscores saved in local storage
     for (var i = 0; i < storedHs.length; i=i+2){
     $("#highscorelist").append('<li>' + storedHs[i] + " " + storedHs[i+1]+ '</li>');
-}}
-
+    }
+    } else {
+    highscoresOff = true;
+    $("#highscorecontainer").hide();
+    // remove highscore from screen
+    for (var i = 0; i < storedHs.length; i++){
+    $("#highscorelist").removeChild('<li></li>');
+    }}
+}
 
 // Event listener to start button to call startGame function on click
 startButton.addEventListener("click", startQuiz);
+// Event listener to view high scores section
 $("#highscore").on("click", viewHighScores);
