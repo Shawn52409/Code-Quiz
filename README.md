@@ -14,7 +14,7 @@ This website was made create a quiz for a user to take. The user will have sixty
 ![Screenshot of website](./assets/img/screenshot.jpg)
 
 # Known Bugs
-The highscores section will not appear and populate when clicked on.
+The highscores section appears but will keep repeating the high scores saved in local storage when clicked.
 
 ## Contact info
 shawnsmm@gmail.com
