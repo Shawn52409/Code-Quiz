@@ -238,9 +238,8 @@ function startTimer() {
     highscoresOff = true;
     $("#highscorecontainer").hide();
     // remove highscore from screen
-    for (var i = 0; i < storedHs.length; i++){
-    $("#highscorelist").removeChild('<li></li>');
-    }}
+    $('#highscorelist').empty();
+    }
 }
 
 // Event listener to start button to call startGame function on click
